@@ -7,6 +7,11 @@
 #include <QPushButton>
 #include <QTextEdit>
 
+#include <QVTKOpenGLNativeWidget.h>
+#include <vtkGenericOpenGLRenderWindow.h>
+#include <vtkRenderer.h>
+#include <vtkSmartPointer.h>
+
 class MainWindow : public QMainWindow
 
 {
@@ -17,8 +22,15 @@ private:
     QNetworkAccessManager *manager;
     QTextEdit *textEdit;
     QPushButton *pushButton;
+
+    QVTKOpenGLNativeWidget *vtkWidget;
+    vtkSmartPointer<vtkRenderer> renderer;
+    vtkSmartPointer<vtkGenericOpenGLRenderWindow> renderWindow;
+
     void onButtonClicked();
     void onReplyFinished(QNetworkReply *reply);
+
+    void showMesh();
 };
 
 #endif
